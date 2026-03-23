@@ -1107,15 +1107,31 @@ body:has(button:hover) #cursor-trail {
 }
 
 .prev-icon {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  display: block;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.4s ease;
+  color: var(--gold);
+}
+.prev-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--gold);
   transition: transform 0.4s ease;
 }
-
 .prev-item:hover .prev-icon {
-  transform: scale(1.2) rotate(-5deg);
+  background: rgba(201,168,76,0.16);
+  border-color: var(--gold);
+  box-shadow: 0 0 18px var(--gold-glow);
+  transform: scale(1.1);
 }
+.prev-item:hover .prev-icon svg { transform: scale(1.1) rotate(-8deg); }
 
 .prev-item h4 {
   font-family: 'Cormorant Garamond', serif;
