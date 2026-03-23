@@ -1621,17 +1621,18 @@ cite {
 
   .hero-inner {
     grid-template-columns: 1fr;
-    padding: 7rem 1.5rem 3rem;
-    gap: 3rem;
+    padding: 6.5rem 1.5rem 3.5rem;
+    gap: 2rem;
     text-align: center;
   }
 
+  /* Texto primeiro no mobile */
   .hero-text {
-    order: 2;
+    order: 1;
   }
 
   .hero-photo-wrap {
-    order: 1;
+    order: 2;
   }
 
   .hero-desc,
@@ -1639,18 +1640,35 @@ cite {
     justify-content: center;
   }
 
+  /* Foto circular compacta no mobile */
+  .hero-photo-wrap {
+    flex-direction: column;
+    gap: 0;
+  }
+
   .hero-photo-frame {
-    width: min(300px, 85%);
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.08), 0 16px 48px rgba(0,0,0,0.4);
   }
 
-  .hero-photo-ring {
-    width: 320px;
-    height: 320px;
+  .hero-photo {
+    object-position: center top;
   }
 
-  .ring2 {
-    width: 380px;
-    height: 380px;
+  /* Oculta rings decorativos no mobile */
+  .hero-photo-ring,
+  .ring2,
+  .hero-photo-glow {
+    display: none;
+  }
+
+  /* Nome menor para não exceder */
+  .hero-name {
+    font-size: clamp(2.8rem, 12vw, 4rem);
   }
 
   .sobre-grid {
