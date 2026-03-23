@@ -1706,6 +1706,18 @@ cite {
 
   .contato-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contato-cta-wrap {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contato-cta-card {
+    padding: 2rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .stats-container {
