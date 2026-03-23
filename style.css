@@ -1113,25 +1113,30 @@ body:has(button:hover) #cursor-trail {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(201,168,76,0.08);
+  background: rgba(201, 168, 76, 0.08);
   border: 1px solid var(--border);
   border-radius: 14px;
   transition: all 0.4s ease;
   color: var(--gold);
 }
+
 .prev-icon svg {
   width: 26px;
   height: 26px;
   color: var(--gold);
   transition: transform 0.4s ease;
 }
+
 .prev-item:hover .prev-icon {
-  background: rgba(201,168,76,0.16);
+  background: rgba(201, 168, 76, 0.16);
   border-color: var(--gold);
   box-shadow: 0 0 18px var(--gold-glow);
   transform: scale(1.1);
 }
-.prev-item:hover .prev-icon svg { transform: scale(1.1) rotate(-8deg); }
+
+.prev-item:hover .prev-icon svg {
+  transform: scale(1.1) rotate(-8deg);
+}
 
 .prev-item h4 {
   font-family: 'Cormorant Garamond', serif;
@@ -1610,6 +1615,10 @@ cite {
 
 @media (max-width: 768px) {
 
+  .hero-photo-wrap {
+    display: none !important;
+  }
+
   .nav-links,
   .nav-cta {
     display: none;
@@ -1652,7 +1661,7 @@ cite {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border: 2px solid var(--gold);
-    box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.08), 0 16px 48px rgba(0,0,0,0.4);
+    box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.08), 0 16px 48px rgba(0, 0, 0, 0.4);
   }
 
   .hero-photo {
