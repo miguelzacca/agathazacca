@@ -1771,3 +1771,620 @@ cite {
     gap: 1rem;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   COMO FUNCIONA – Timeline
+═══════════════════════════════════════════════ */
+#como-funciona {
+  position: relative;
+  z-index: 1;
+  background: var(--dark2);
+}
+
+.timeline-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 240px;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.timeline-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.timeline-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-step:hover .timeline-icon {
+  background: rgba(201,168,76,0.16);
+  border-color: var(--gold);
+}
+
+.timeline-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--gold);
+}
+
+.timeline-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.timeline-content p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.timeline-connector {
+  flex: 0 0 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  align-self: center;
+  margin-top: -3rem;
+  opacity: 0.4;
+  position: relative;
+}
+
+.timeline-connector::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--gold);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+@media (max-width: 768px) {
+  .timeline-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .timeline-connector {
+    width: 2px;
+    height: 30px;
+    flex: 0 0 30px;
+    background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+    margin-top: 0;
+  }
+  .timeline-connector::after {
+    right: -4px;
+    top: auto;
+    bottom: -6px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--gold);
+    border-bottom: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   TRIAGEM – Multi-step interactive form
+═══════════════════════════════════════════════ */
+#triagem {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--dark3) 0%, var(--dark4) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.triagem-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.triagem-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+}
+
+.triagem-form {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.triagem-step {
+  display: none;
+  animation: fadeInUp 0.4s ease;
+}
+
+.triagem-step.active {
+  display: block;
+}
+
+.triagem-question {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.triagem-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.triagem-opt {
+  background: rgba(201,168,76,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.triagem-opt:hover {
+  background: rgba(201,168,76,0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.triagem-result-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.triagem-result-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--gold);
+}
+
+#triagem-result h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#triagem-result p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#triagem-result .btn-gold,
+#triagem-result .btn-outline {
+  width: 100%;
+  justify-content: center;
+}
+
+.triagem-restart {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  justify-content: center;
+}
+
+.triagem-progress {
+  height: 3px;
+  background: rgba(201,168,76,0.12);
+  border-radius: 999px;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.triagem-progress-fill {
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: 999px;
+  width: 33%;
+  transition: width 0.4s var(--transition);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .triagem-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   EDUCACIONAL – 3 knowledge cards
+═══════════════════════════════════════════════ */
+#educacional {
+  position: relative;
+  z-index: 1;
+  background: var(--dark);
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.edu-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.edu-card:hover {
+  border-color: rgba(201,168,76,0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+
+.edu-card:hover::before {
+  transform: scaleX(1);
+}
+
+.edu-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(201,168,76,0.08);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+}
+
+.edu-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--gold);
+}
+
+.edu-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.edu-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.edu-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.edu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: gap 0.25s ease;
+  margin-top: 0.5rem;
+}
+
+.edu-link:hover {
+  gap: 0.7rem;
+}
+
+@media (max-width: 900px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   DIGITAL – Full-width banner
+═══════════════════════════════════════════════ */
+#digital {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #0d1520 0%, #1a2436 50%, #0d1520 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+#digital::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.digital-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.digital-content .gold-line {
+  margin-bottom: 1.5rem;
+}
+
+.digital-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.digital-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.digital-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.digital-list li svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: var(--gold);
+}
+
+.digital-badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.digital-badge {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.digital-badge:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+.digital-badge svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--gold);
+}
+
+.digital-badge span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .digital-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FAQ – Accordion
+═══════════════════════════════════════════════ */
+#faq {
+  position: relative;
+  z-index: 1;
+  background: var(--dark2);
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.faq-item.open {
+  border-color: rgba(201,168,76,0.35);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 1.3rem 1.5rem;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+.faq-item.open .faq-question {
+  color: var(--gold);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: rgba(201,168,76,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.4s var(--transition);
+}
+
+.faq-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold);
+  transition: transform 0.4s var(--transition);
+}
+
+.faq-item.open .faq-icon {
+  background: rgba(201,168,76,0.18);
+}
+
+.faq-item.open .faq-icon svg {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s var(--transition), padding 0.3s ease;
+}
+
+.faq-answer p {
+  padding: 0 1.5rem 1.4rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* content-visibility for new sections */
+#como-funciona,
+#triagem,
+#educacional,
+#digital,
+#faq {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}

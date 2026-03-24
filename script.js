@@ -536,3 +536,87 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 console.log('%c⚖ Ágatha Zacca Advogada – OAB/SC 61.660',
   'color:#C9A84C; font-size:16px; font-weight:bold; font-family:Georgia,serif;');
+
+// ─── FAQ ACCORDION ───────────────────────────────
+(function initFAQ() {
+  const items = qsa('.faq-item');
+  if (!items.length) return;
+
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all others
+      items.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('open');
+          const a = i.querySelector('.faq-answer');
+          if (a) a.style.maxHeight = null;
+          const q = i.querySelector('.faq-question');
+          if (q) q.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      if (isOpen) {
+        item.classList.remove('open');
+        answer.style.maxHeight = null;
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+
+// ─── TRIAGEM MULTI-STEP ──────────────────────────
+(function initTriagem() {
+  const opts = qsa('.triagem-opt');
+  const progressFill = $('#triagem-progress-fill');
+  const progressBar = $('#triagem-progress');
+  const restartBtn = $('#triagem-restart');
+  if (!opts.length) return;
+
+  const stepProgress = { '1': 33, '2': 66, '3': 100, 'result': 100 };
+
+  function showStep(id) {
+    // Hide all steps
+    qsa('.triagem-step').forEach(s => s.classList.remove('active'));
+
+    const target = id === 'result'
+      ? $('#triagem-result')
+      : $(`#triagem-step-${id}`);
+
+    if (target) target.classList.add('active');
+
+    // Update progress bar
+    if (progressFill) {
+      progressFill.style.width = (stepProgress[id] || 33) + '%';
+    }
+    // Hide progress bar on result
+    if (progressBar) {
+      progressBar.style.opacity = id === 'result' ? '0' : '1';
+    }
+  }
+
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const next = opt.getAttribute('data-next');
+      if (next) showStep(next);
+    });
+  });
+
+  if (restartBtn) {
+    restartBtn.addEventListener('click', () => {
+      showStep('1');
+      if (progressBar) progressBar.style.opacity = '1';
+    });
+  }
+})();
+
