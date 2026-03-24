@@ -12,19 +12,36 @@ const qsa = (s, ctx = document) => [...ctx.querySelectorAll(s)];
 const $ = qs;
 
 // ─── LOADER ─────────────────────────────────────
+// Detect bots/crawlers: skip loader entirely so Google sees content immediately
+const isBot = /bot|crawl|slurp|spider|mediapartners|google|baidu|bing|msn|teoma|yahoo/i.test(navigator.userAgent);
+
 (function initLoader() {
   const loader = $('#loader');
   if (!loader) return;
 
+  // For bots: hide loader instantly and don't block anything
+  if (isBot) {
+    loader.style.display = 'none';
+    triggerHeroAnimations();
+    return;
+  }
+
+  // For real users: use a short, non-blocking delay (≤800ms)
+  // Do NOT set overflow:hidden on body – this hurts CLS and LCP measurements
   window.addEventListener('load', () => {
     setTimeout(() => {
       loader.classList.add('hidden');
-      document.body.style.overflow = 'auto';
       triggerHeroAnimations();
-    }, 2400);
+    }, 800);
   });
 
-  document.body.style.overflow = 'hidden';
+  // Fallback: if load fires late, hide loader after max 1.5s from script run
+  setTimeout(() => {
+    if (!loader.classList.contains('hidden')) {
+      loader.classList.add('hidden');
+      triggerHeroAnimations();
+    }
+  }, 1500);
 })();
 
 function triggerHeroAnimations() {
@@ -227,7 +244,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   window.addEventListener('scroll', checkVisible, { passive: true });
   window.addEventListener('resize', checkVisible, { passive: true });
-  setTimeout(checkVisible, 2600);
+  // Run AOS after loader hides (~900ms) so elements animate in correctly
+  setTimeout(checkVisible, isBot ? 0 : 900);
 })();
 
 // ─── COUNTERS ───────────────────────────────────

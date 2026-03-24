@@ -118,6 +118,8 @@ body:has(button:hover) #cursor-trail {
 }
 
 /* ——— LOADER ——— */
+/* SEO note: loader uses pointer-events:none so it never blocks interactivity
+   measurements (FID/INP). Bots skip it entirely via JS. */
 #loader {
   position: fixed;
   inset: 0;
@@ -127,12 +129,14 @@ body:has(button:hover) #cursor-trail {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: none; /* never block click/touch metrics */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 #loader.hidden {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .loader-logo {
@@ -141,6 +145,7 @@ body:has(button:hover) #cursor-trail {
   align-items: center;
   gap: 2rem;
   animation: loaderPulse 1.5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .loader-logo img {
@@ -164,7 +169,8 @@ body:has(button:hover) #cursor-trail {
   height: 100%;
   background: var(--gold-gradient);
   border-radius: 999px;
-  animation: loaderFill 2.2s ease forwards;
+  /* Match JS timer: fill completes in 0.7s (loader hides at 0.8s) */
+  animation: loaderFill 0.7s ease forwards;
 }
 
 @keyframes loaderPulse {
@@ -756,6 +762,18 @@ body:has(button:hover) #cursor-trail {
 }
 
 /* ——— SECTION LAYOUT ——— */
+/* content-visibility:auto lets browsers skip rendering off-screen sections,
+   improving LCP and overall page speed score */
+#sobre,
+#atuacao,
+#previdenciario,
+#quote-section,
+#contato,
+#footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px; /* prevents layout shift while hidden */
+}
+
 .section-container {
   position: relative;
   z-index: 1;
