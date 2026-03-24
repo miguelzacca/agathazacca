@@ -620,3 +620,85 @@ console.log('%c⚖ Ágatha Zacca Advogada – OAB/SC 61.660',
   }
 })();
 
+// ─── REVIEWS CAROUSEL ───────────────────────────
+(function initReviewsCarousel() {
+  const track    = $('#rcTrack');
+  const viewport = $('#rcViewport');
+  const prevBtn  = $('#rcPrev');
+  const nextBtn  = $('#rcNext');
+  const dotsWrap = $('#rcDots');
+
+  if (!track || !viewport) return;
+
+  const cards = qsa('.review-card', track);
+  const total = cards.length;
+  if (!total) return;
+
+  let current = 0;
+  let autoTimer = null;
+
+  // ── Build dots ──────────────────────────────
+  const dots = [];
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'rc-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Avaliação ${i + 1}`);
+    dot.addEventListener('click', () => { resetAuto(); goTo(i); });
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+  });
+
+  // ── Core movement ───────────────────────────
+  function goTo(idx) {
+    current = ((idx % total) + total) % total;
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseFloat(getComputedStyle(track).gap) || 24;
+    track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+    cards.forEach((c, i) => c.classList.toggle('rc-active', i === current));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  // ── Buttons ──────────────────────────────────
+  if (nextBtn) nextBtn.addEventListener('click', () => { resetAuto(); next(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { resetAuto(); prev(); });
+
+  // ── Auto-advance ─────────────────────────────
+  function startAuto() { autoTimer = setInterval(next, 5000); }
+  function stopAuto()  { clearInterval(autoTimer); }
+  function resetAuto() { stopAuto(); startAuto(); }
+
+  const section = $('#avaliacoes');
+  if (section) {
+    section.addEventListener('mouseenter', stopAuto);
+    section.addEventListener('mouseleave', startAuto);
+  }
+
+  // ── Touch / swipe ─────────────────────────────
+  let touchStartX = 0;
+  viewport.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { resetAuto(); dx < 0 ? next() : prev(); }
+  }, { passive: true });
+
+  // ── Keyboard ─────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    if (rect.top > window.innerHeight || rect.bottom < 0) return;
+    if (e.key === 'ArrowRight') { resetAuto(); next(); }
+    if (e.key === 'ArrowLeft')  { resetAuto(); prev(); }
+  });
+
+  // ── Resize ───────────────────────────────────
+  window.addEventListener('resize', () => goTo(current), { passive: true });
+
+  // ── Init ─────────────────────────────────────
+  goTo(0);
+  startAuto();
+})();
