@@ -129,7 +129,8 @@ body:has(button:hover) #cursor-trail {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  pointer-events: none; /* never block click/touch metrics */
+  pointer-events: none;
+  /* never block click/touch metrics */
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -771,7 +772,8 @@ body:has(button:hover) #cursor-trail {
 #contato,
 #footer {
   content-visibility: auto;
-  contain-intrinsic-size: 0 600px; /* prevents layout shift while hidden */
+  contain-intrinsic-size: 0 600px;
+  /* prevents layout shift while hidden */
 }
 
 .section-container {
@@ -1817,7 +1819,7 @@ cite {
 .timeline-icon {
   width: 56px;
   height: 56px;
-  background: rgba(201,168,76,0.08);
+  background: rgba(201, 168, 76, 0.08);
   border: 1px solid var(--border);
   border-radius: 16px;
   display: flex;
@@ -1828,7 +1830,7 @@ cite {
 }
 
 .timeline-step:hover .timeline-icon {
-  background: rgba(201,168,76,0.16);
+  background: rgba(201, 168, 76, 0.16);
   border-color: var(--gold);
 }
 
@@ -1879,6 +1881,7 @@ cite {
     align-items: center;
     gap: 2rem;
   }
+
   .timeline-connector {
     width: 2px;
     height: 30px;
@@ -1886,6 +1889,7 @@ cite {
     background: linear-gradient(180deg, var(--gold-dark), var(--gold));
     margin-top: 0;
   }
+
   .timeline-connector::after {
     right: -4px;
     top: auto;
@@ -1923,7 +1927,7 @@ cite {
 }
 
 .triagem-form {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2.5rem;
@@ -1956,7 +1960,7 @@ cite {
 }
 
 .triagem-opt {
-  background: rgba(201,168,76,0.04);
+  background: rgba(201, 168, 76, 0.04);
   border: 1px solid var(--border);
   color: var(--text-muted);
   font-family: 'Montserrat', sans-serif;
@@ -1970,7 +1974,7 @@ cite {
 }
 
 .triagem-opt:hover {
-  background: rgba(201,168,76,0.12);
+  background: rgba(201, 168, 76, 0.12);
   border-color: var(--gold);
   color: var(--gold);
   transform: translateX(4px);
@@ -1979,7 +1983,7 @@ cite {
 .triagem-result-icon {
   width: 60px;
   height: 60px;
-  background: rgba(201,168,76,0.12);
+  background: rgba(201, 168, 76, 0.12);
   border: 1px solid var(--gold);
   border-radius: 50%;
   display: flex;
@@ -2025,7 +2029,7 @@ cite {
 
 .triagem-progress {
   height: 3px;
-  background: rgba(201,168,76,0.12);
+  background: rgba(201, 168, 76, 0.12);
   border-radius: 999px;
   margin-top: 2rem;
   overflow: hidden;
@@ -2040,8 +2044,15 @@ cite {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 900px) {
@@ -2068,7 +2079,7 @@ cite {
 }
 
 .edu-card {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
@@ -2094,9 +2105,9 @@ cite {
 }
 
 .edu-card:hover {
-  border-color: rgba(201,168,76,0.35);
+  border-color: rgba(201, 168, 76, 0.35);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
 .edu-card:hover::before {
@@ -2106,7 +2117,7 @@ cite {
 .edu-icon {
   width: 48px;
   height: 48px;
-  background: rgba(201,168,76,0.08);
+  background: rgba(201, 168, 76, 0.08);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -2122,7 +2133,7 @@ cite {
 
 .edu-tag {
   display: inline-block;
-  background: rgba(201,168,76,0.1);
+  background: rgba(201, 168, 76, 0.1);
   border: 1px solid var(--border);
   color: var(--gold);
   font-size: 0.68rem;
@@ -2191,7 +2202,7 @@ cite {
   right: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -2246,7 +2257,7 @@ cite {
 }
 
 .digital-badge {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem 1.5rem;
@@ -2260,7 +2271,7 @@ cite {
 
 .digital-badge:hover {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.06);
+  background: rgba(201, 168, 76, 0.06);
 }
 
 .digital-badge svg {
@@ -2302,7 +2313,7 @@ cite {
 }
 
 .faq-item {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
@@ -2310,7 +2321,7 @@ cite {
 }
 
 .faq-item.open {
-  border-color: rgba(201,168,76,0.35);
+  border-color: rgba(201, 168, 76, 0.35);
 }
 
 .faq-question {
@@ -2343,7 +2354,7 @@ cite {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
-  background: rgba(201,168,76,0.08);
+  background: rgba(201, 168, 76, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2359,7 +2370,7 @@ cite {
 }
 
 .faq-item.open .faq-icon {
-  background: rgba(201,168,76,0.18);
+  background: rgba(201, 168, 76, 0.18);
 }
 
 .faq-item.open .faq-icon svg {
