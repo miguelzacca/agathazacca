@@ -1825,7 +1825,7 @@ cite {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
