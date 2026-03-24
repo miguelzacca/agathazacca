@@ -52,6 +52,7 @@
 
   <!-- ═══ SITEMAP / PRELOAD ═══ -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="preload" as="image" href="./assets/logo1.jpg.jpeg" fetchpriority="high" />
   <link rel="preload" as="image" href="./assets/foto_agatha.jpeg" fetchpriority="high" />
 
   <!-- ═══ FONTS ═══ -->
@@ -175,7 +176,7 @@
   <!-- LOADER -->
   <div id="loader">
     <div class="loader-logo">
-      <img src="assets/logo1.jpg.jpeg" alt="Ágatha Zacca Logo" id="loader-img" />
+      <img src="assets/logo1.jpg.jpeg" alt="Ágatha Zacca Logo" id="loader-img" fetchpriority="high" loading="eager" />
       <div class="loader-bar">
         <div class="loader-fill"></div>
       </div>

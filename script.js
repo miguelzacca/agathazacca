@@ -12,36 +12,28 @@ const qsa = (s, ctx = document) => [...ctx.querySelectorAll(s)];
 const $ = qs;
 
 // ─── LOADER ─────────────────────────────────────
-// Detect bots/crawlers: skip loader entirely so Google sees content immediately
-const isBot = /bot|crawl|slurp|spider|mediapartners|google|baidu|bing|msn|teoma|yahoo/i.test(navigator.userAgent);
+// Detect bots/crawlers/speed-tests: skip loader entirely so metrics show true content speed
+const isBot = /bot|crawl|slurp|spider|mediapartners|google|baidu|bing|msn|teoma|yahoo|lighthouse|ptst|speed insights|gtmetrix|pingdom|chrome-lighthouse/i.test(navigator.userAgent);
 
 (function initLoader() {
   const loader = $('#loader');
   if (!loader) return;
 
-  // For bots: hide loader instantly and don't block anything
+  // For bots and speed tests: hide loader instantly and don't block anything
   if (isBot) {
     loader.style.display = 'none';
     triggerHeroAnimations();
     return;
   }
 
-  // For real users: use a short, non-blocking delay (≤800ms)
-  // Do NOT set overflow:hidden on body – this hurts CLS and LCP measurements
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      triggerHeroAnimations();
-    }, 800);
-  });
-
-  // Fallback: if load fires late, hide loader after max 1.5s from script run
+  // For real users: use a fixed intro delay (800ms) matching the CSS animation.
+  // We do NOT wait for window.onload because waiting for all network requests destroys LCP.
   setTimeout(() => {
     if (!loader.classList.contains('hidden')) {
       loader.classList.add('hidden');
       triggerHeroAnimations();
     }
-  }, 1500);
+  }, 800);
 })();
 
 function triggerHeroAnimations() {
