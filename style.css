@@ -533,6 +533,9 @@ body:has(button:hover) #cursor-trail {
 .btn-gold.full-width {
   width: 100%;
   justify-content: center;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .btn-gold.mt-2 {
@@ -567,6 +570,9 @@ body:has(button:hover) #cursor-trail {
 .btn-outline.full-width {
   width: 100%;
   justify-content: center;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .btn-outline.mt-1 {
@@ -1772,6 +1778,9 @@ cite {
   .btn-outline {
     width: 100%;
     justify-content: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
   }
 
   .footer-links {
