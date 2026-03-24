@@ -983,6 +983,7 @@ body:has(button:hover) #cursor-trail {
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.03), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .atuacao-card::after {
@@ -996,6 +997,7 @@ body:has(button:hover) #cursor-trail {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
+  pointer-events: none;
 }
 
 .atuacao-card:hover {
