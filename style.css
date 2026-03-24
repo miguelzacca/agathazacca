@@ -2064,6 +2064,45 @@ cite {
   }
 }
 
+@media (max-width: 768px) {
+
+  #cursor,
+  #cursor-trail {
+    display: none !important;
+  }
+
+  .triagem-form {
+    padding: 2rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .triagem-question {
+    font-size: 1.25rem;
+  }
+
+  #triagem-result h3 {
+    font-size: 1.35rem;
+  }
+
+  .triagem-opt {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .triagem-result-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  #triagem-result .btn-gold,
+  #triagem-result .btn-outline {
+    font-size: 0.85rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
 /* ═══════════════════════════════════════════════
    EDUCACIONAL – 3 knowledge cards
 ═══════════════════════════════════════════════ */
